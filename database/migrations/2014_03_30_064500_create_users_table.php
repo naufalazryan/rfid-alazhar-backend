@@ -9,11 +9,11 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void
-    {
+{
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id_user');
             $table->unsignedBigInteger('id_role');
-            $table->string('nama');
+            $table->string('username');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

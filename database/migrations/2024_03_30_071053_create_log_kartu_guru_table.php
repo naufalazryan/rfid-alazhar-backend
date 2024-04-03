@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigIncrements('id_log_kartu_g');
             $table->unsignedBigInteger('id_kartu_g');
             $table->boolean('status')->default(false);
-            $table->timestamp('waktu_interaksi')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('waktu')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->enum('keterangan', ['hadir', 'izin', 'sakit'])->default('hadir');
             $table->foreign('id_kartu_g')->references('id_kartu_g')->on('kartu_guru')->onDelete('cascade');
         });

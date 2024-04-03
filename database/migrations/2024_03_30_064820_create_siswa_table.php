@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->bigIncrements('id_siswa');
-            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_user')->nullable();
             $table->unsignedBigInteger('id_kelas');
             $table->string('nama_siswa');
             $table->char('nis', 9)->unique();
             $table->text('alamat');
-            $table->integer('nomor_telepon');
-            $table->enum('jk', ['Pria', 'Wanita']);
-            $table->timestamps();
+            $table->integer('telp');
+            $table->enum('jk', ['pria', 'wanita']);
 
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
             $table->foreign('id_kelas')->references('id_kelas')->on('kelas')->onDelete('cascade');
