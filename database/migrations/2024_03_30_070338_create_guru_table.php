@@ -15,12 +15,13 @@
                 $table->bigIncrements('id_guru');
                 $table->char('nip', 9)->unique();
                 $table->string('nama_guru');
-                $table->enum('jk', ['pria', 'wanita']);
+                $table->string('jk');
                 $table->string('jabatan');
                 $table->string('tempat_lahir');
                 $table->date('tgl_lahir');
             });
         }
+
 
         /**
          * Reverse the migrations.

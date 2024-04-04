@@ -11,7 +11,7 @@ class StoreKartuGuruRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreKartuGuruRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id_guru' => 'required|exists:guru,id_guru',
+            'uid' => 'required|string|size:12'
         ];
     }
 }

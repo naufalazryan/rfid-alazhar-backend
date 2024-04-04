@@ -33,7 +33,7 @@ class GuruController extends Controller
         $guru = Guru::create($request->validated());
 
         return response()->json([
-            'message' => 'Guru berhasil ditambahkan',
+            'message' => 'Data berhasil ditambahkan',
             'guru' => $guru
         ], 201);
     }
@@ -41,9 +41,17 @@ class GuruController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Guru $guru)
+    public function show($id)
     {
+        $guru = Guru::find($id);
+
+        if (!$guru) {
+            return response()->json(['message' => 'Data tidak ditemukan'], 404);
+        }
+
+        return response()->json($guru, 200);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -58,16 +66,12 @@ class GuruController extends Controller
      */
     public function update(UpdateGuruRequest $request, $id)
     {
-        try {
-            $guru = Guru::findOrFail($id);
-            $guru->update($request->validated());
+       $guru = Guru::findOrFail($id);
+       $guru->update($request->validated());
 
-            return response()->json(['message' => 'Guru berhasil diperbarui', 'data' => $guru], 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Gagal memperbarui guru', 'error' => $e->getMessage()], 500);
-        }
+       return response()->json(['message' => 'Data berhasil diperbarui', 'data' => $guru], 200);
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */
@@ -76,6 +80,6 @@ class GuruController extends Controller
         $guru = Guru::findOrFail($id);
         $guru->delete();
 
-        return response()->json(['message' => 'Guru berhasil dihapus', 'data' => $guru], 200);
+        return response()->json(['message' => 'Data berhasil dihapus', 'data' => $guru], 200);
     }
 }

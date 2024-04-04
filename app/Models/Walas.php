@@ -19,7 +19,8 @@ class Walas extends Model
     public $timestamps = false;
 
     public function guru()
-    {
-        return $this->belongsTo(Guru::class, 'id_guru', 'id_guru');
-    }
+{
+    return $this->belongsTo(Guru::class, 'id_guru');
+}
+
 }

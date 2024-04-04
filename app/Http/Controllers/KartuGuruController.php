@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\KartuGuru;
 use App\Http\Requests\StoreKartuGuruRequest;
 use App\Http\Requests\UpdateKartuGuruRequest;
+use App\Models\Guru;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use UpdateKartuGuruRequest as GlobalUpdateKartuGuruRequest;
 
 class KartuGuruController extends Controller
 {
@@ -13,7 +17,8 @@ class KartuGuruController extends Controller
      */
     public function index()
     {
-        //
+        $kartu_guru = KartuGuru::all();
+        return response()->json(['data' => $kartu_guru], 200);
     }
 
     /**
@@ -29,15 +34,20 @@ class KartuGuruController extends Controller
      */
     public function store(StoreKartuGuruRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        $kartuGuru = KartuGuru::create($validatedData);
+
+        return response()->json(['message' => 'Kartu Guru berhasil ditambahkan', 'data' => $kartuGuru], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(KartuGuru $kartuGuru)
+    public function show($id)
     {
-        //
+        $guru = Guru::findOrFail($id);
+        return response()->json(['data' => $guru], 200);
     }
 
     /**
@@ -51,16 +61,31 @@ class KartuGuruController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateKartuGuruRequest $request, KartuGuru $kartuGuru)
+    public function update(UpdateKartuGuruRequest $request, $id)
     {
-        //
+        $kartu_guru = KartuGuru::findOrFail($id);
+        $kartu_guru->update($request->validated());
+
+        return response()->json(['message' => 'Data berhasil diperbarui', 'data' => $kartu_guru], 200);
     }
+
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(KartuGuru $kartuGuru)
+    public function destroy($id)
     {
-        //
+        try {
+            $kartuGuru = KartuGuru::findOrFail($id);
+
+            $kartuGuru->delete();
+
+            return response()->json(['message' => 'Kartu Guru berhasil dihapus'], 200);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'Kartu Guru tidak ditemukan', 'error' => $e->getMessage()], 404);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Gagal menghapus Kartu Guru', 'error' => $e->getMessage()], 500);
+        }
     }
 }

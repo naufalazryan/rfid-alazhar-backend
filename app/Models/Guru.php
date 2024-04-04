@@ -25,9 +25,9 @@ class Guru extends Model
         return $this->hasMany(Walas::class, 'id_guru');
     }
 
-    public function getFormattedTglLahirAttribute()
+    public function kartu_g ()
     {
-        return \Carbon\Carbon::parse($this->attributes['tgl_lahir'])->format('d/m/Y');
+        return $this->hasMany(KartuGuru::class, 'id_guru');
     }
 
 }

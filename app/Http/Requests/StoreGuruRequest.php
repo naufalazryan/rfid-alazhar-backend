@@ -19,16 +19,16 @@ class StoreGuruRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
+    
         return [
-            'nip' => ['required', 'unique:guru,nip', 'max:9'],
+            'nip' => 'required|unique:guru,nip',
             'nama_guru' => 'required',
-            'jk' => 'required',
+            'jk' => 'required|in:pria,wanita',
             'jabatan' => 'required',
             'tempat_lahir' => 'required',
-            'tgl_lahir' => 'required',
+            'tgl_lahir' => 'required|date',
         ];
     }
 }
-

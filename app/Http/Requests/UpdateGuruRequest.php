@@ -22,12 +22,12 @@ class UpdateGuruRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nip' => ['required', 'unique:guru,nip', 'max:9'],
-            'nama_guru' => 'required',
-            'jk' => 'required',
-            'jabatan' => 'required',
-            'tempat_lahir' => 'required',
-            'tgl_lahir' => 'required',
+            'nip' => 'required|string|max:255',
+            'nama_guru' => 'required|string|max:255',
+            'jk' => 'required|string|in:pria,wanita',
+            'jabatan' => 'required|string|max:255',
+            'tempat_lahir' => 'required|string|max:255',
+            'tgl_lahir' => 'required|date',
         ];
     }
 }
