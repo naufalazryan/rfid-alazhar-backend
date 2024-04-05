@@ -17,8 +17,10 @@ class KartuGuruController extends Controller
      */
     public function index()
     {
-        $kartu_guru = KartuGuru::all();
-        return response()->json(['data' => $kartu_guru], 200);
+        $kartuGuru = KartuGuru::with(['guru' => function ($query) {
+            $query->select('id_guru', 'nama_guru');
+        }])->get();
+        return response()->json(['data' => $kartuGuru], 200);
     }
 
     /**
@@ -67,7 +69,7 @@ class KartuGuruController extends Controller
         $kartu_guru->update($request->validated());
 
         return response()->json(['message' => 'Data berhasil diperbarui', 'data' => $kartu_guru], 200);
-    }   
+    }
 
 
 
