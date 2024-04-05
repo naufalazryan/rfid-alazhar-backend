@@ -48,8 +48,8 @@ class KartuGuruController extends Controller
      */
     public function show($id)
     {
-        $guru = Guru::findOrFail($id);
-        return response()->json(['data' => $guru], 200);
+        $kartuGuru = KartuGuru::findOrFail($id);
+        return response()->json(['data' => $kartuGuru], 200);
     }
 
     /**
