@@ -14,10 +14,10 @@ class Guru extends Model
     protected $fillable = [
         'nip',
         'nama_guru',
-        'jk',
+        'jenis_kelamin',
         'jabatan',
         'tempat_lahir',
-        'tgl_lahir'
+        'tanggal_lahir'
     ];
 
     public function walas ()

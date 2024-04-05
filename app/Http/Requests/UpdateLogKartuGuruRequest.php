@@ -11,7 +11,7 @@ class UpdateLogKartuGuruRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateLogKartuGuruRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id_kartu_g' => 'required|exists:kartu_guru,id_kartu_g',
+            'status' => 'required|boolean',
+            'keterangan' => 'required|in:hadir,izin,sakit',
         ];
     }
 }

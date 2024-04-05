@@ -19,7 +19,7 @@ return new class extends Migration
             $table->char('nis', 9)->unique();
             $table->text('alamat');
             $table->integer('telp');
-            $table->enum('jk', ['pria', 'wanita']);
+            $table->enum('jenis_kelamin', ['pria', 'wanita']);
 
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
             $table->foreign('id_kelas')->references('id_kelas')->on('kelas')->onDelete('cascade');

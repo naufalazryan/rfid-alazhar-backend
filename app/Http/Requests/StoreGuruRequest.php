@@ -23,12 +23,12 @@ class StoreGuruRequest extends FormRequest
     {
     
         return [
-            'nip' => 'required|unique:guru,nip',
+            'nip' => 'required|string|unique:guru,nip|max:9',
             'nama_guru' => 'required',
-            'jk' => 'required|in:pria,wanita',
+            'jenis_kelamin' => 'required|in:pria,wanita',
             'jabatan' => 'required',
             'tempat_lahir' => 'required',
-            'tgl_lahir' => 'required|date',
+            'tanggal_lahir' => 'required|date',
         ];
     }
 }

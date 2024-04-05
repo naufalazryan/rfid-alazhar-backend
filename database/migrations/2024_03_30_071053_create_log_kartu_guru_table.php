@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('log_kartu_guru', function (Blueprint $table) {
             $table->bigIncrements('id_log_kartu_g');
             $table->unsignedBigInteger('id_kartu_g');
-            $table->boolean('status')->default(false);
+            $table->boolean('status')->default(0);
             $table->timestamp('waktu')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->enum('keterangan', ['hadir', 'izin', 'sakit'])->default('hadir');
+            $table->enum('keterangan', ['-', 'izin', 'sakit'])->default('-');
             $table->foreign('id_kartu_g')->references('id_kartu_g')->on('kartu_guru')->onDelete('cascade');
         });
     }

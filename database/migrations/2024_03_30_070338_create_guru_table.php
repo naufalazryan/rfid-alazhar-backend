@@ -15,10 +15,10 @@
                 $table->bigIncrements('id_guru');
                 $table->char('nip', 9)->unique();
                 $table->string('nama_guru');
-                $table->string('jk');
+                $table->enum('jenis_kelamin', ['pria', 'wanita']);
                 $table->string('jabatan');
                 $table->string('tempat_lahir');
-                $table->date('tgl_lahir');
+                $table->date('tanggal_lahir');
             });
         }
 

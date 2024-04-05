@@ -67,7 +67,7 @@ class KartuGuruController extends Controller
         $kartu_guru->update($request->validated());
 
         return response()->json(['message' => 'Data berhasil diperbarui', 'data' => $kartu_guru], 200);
-    }
+    }   
 
 
 

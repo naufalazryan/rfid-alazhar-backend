@@ -19,4 +19,9 @@ class KartuGuru extends Model
     {
         return $this->belongsTo(Guru::class, 'id_guru');
     }
+
+    public function logKartuGuru()
+    {
+        return $this->hasMany(LogKartuGuru::class, 'id_kartu_g');
+    }
 }

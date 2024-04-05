@@ -4,7 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KartuGuruController;
-use App\Models\KartuGuru;
+use App\Http\Controllers\LogKartuGuruController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +27,5 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
 
 Route::middleware('auth:sanctum')->apiResource('guru', GuruController::class);
-Route::middleware('auth:sanctum')->apiResource('kartu-guru', KartuGuruController::class);   
+Route::middleware('auth:sanctum')->apiResource('kartu-guru', KartuGuruController::class);
+Route::middleware('auth:sanctum')->apiResource('log-kartu-guru', LogKartuGuruController::class);
