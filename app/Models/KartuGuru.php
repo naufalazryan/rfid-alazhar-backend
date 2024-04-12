@@ -15,6 +15,8 @@ class KartuGuru extends Model
         'id_guru',
     ];
 
+    public $timestamps = false;
+
     public function guru()
     {
         return $this->belongsTo(Guru::class, 'id_guru');

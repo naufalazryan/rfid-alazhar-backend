@@ -30,4 +30,5 @@ class Guru extends Model
         return $this->hasMany(KartuGuru::class, 'id_guru');
     }
 
+
 }

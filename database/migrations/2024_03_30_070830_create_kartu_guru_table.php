@@ -15,7 +15,6 @@ return new class extends Migration
             $table->bigIncrements('id_kartu_g');
             $table->char('uid', 12)->unique();
             $table->unsignedBigInteger('id_guru');
-            $table->timestamps();
 
             $table->foreign('id_guru')->references('id_guru')->on('guru')->onDelete('cascade');
         });
